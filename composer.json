@@ -1,0 +1,74 @@
+{
+    "name": "eliasdossantos/agendamento-saas",
+    "description": "Sistema SaaS de agendamento online multi-unidade, construído em PHP puro sobre o php-mvc",
+    "keywords": [
+        "agendamento",
+        "saas",
+        "scheduling",
+        "php",
+        "mvc"
+    ],
+    "homepage": "https://github.com/eliasdossantos/agendamento-saas",
+    "bugs": {
+        "url": "https://github.com/eliasdossantos/agendamento-saas/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eliasdossantos/agendamento-saas.git"
+    },
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Elias",
+            "homepage": "https://elias-dev.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "vlucas/phpdotenv": "^5.6",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "bin": [
+        "mvc"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "app/Core/",
+            "App\\Controllers\\": "app/Controllers/",
+            "App\\Models\\": "app/Models/",
+            "App\\Services\\": "app/Services/",
+            "App\\Repositories\\": "app/Repositories/",
+            "App\\Middlewares\\": "app/Middlewares/",
+            "App\\Helpers\\": "app/Helpers/",
+            "App\\Requests\\": "app/Requests/",
+            "Cli\\": "cli/"
+        },
+        "files": [
+            "app/Helpers/functions.php",
+            "app/Helpers/ViewHelper.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@php -r \"copy('.env.example', '.env');\"",
+            "@php -r \"echo '\\n✅  .env criado a partir de .env.example\\n';\""
+        ],
+        "serve": "php -S localhost:8000 -t public",
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,34 @@
+# ── Ambiente ──────────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+composer.lock
+
+# ── Dependências ──────────────────────────────────────────────────────────────
+/vendor/
+
+# ── Storage gerado em runtime ─────────────────────────────────────────────────
+/storage/logs/*
+/storage/cache/*
+/storage/sessions/*
+/storage/uploads/*
+
+# Mantém as pastas no repositório
+!storage/logs/.gitkeep
+!storage/cache/.gitkeep
+!storage/cache/ratelimit/.gitkeep
+!storage/sessions/.gitkeep
+!storage/uploads/.gitkeep
+
+# ── IDEs e SO ─────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Arquivos de debug que nunca devem ir ao repo ───────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
