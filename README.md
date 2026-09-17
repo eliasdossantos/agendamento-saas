@@ -17,16 +17,20 @@ O projeto é construído sobre a base **[php-mvc](https://github.com/eliasdossan
 ## Funcionalidades
 
 ### Autenticação
+
 - Login e logout
 - Cadastro de usuário
 - Recuperação de senha (esqueci minha senha / redefinição por token)
 
 ### Painel Super Administrador (`/super`)
+
 Área administrativa central do SaaS, com CRUD completo de **Unidades**:
+
 - Listagem, criação, edição, visualização e exclusão de unidades
 - Ativar / desativar unidade (`ver-status`)
 
 Cada unidade armazena:
+
 - **Identificação:** nome, slug (para URLs amigáveis), descrição
 - **Contato:** e-mail, telefone, coordenador responsável
 - **Endereço completo:** rua, número, complemento, bairro, cidade, estado, CEP
@@ -35,9 +39,11 @@ Cada unidade armazena:
 - **Imagem** e **status** (ativa/inativa)
 
 ### Dashboard
+
 Painel inicial pós-login (`/dashboard`), base para as próximas telas do sistema.
 
 ### Segurança
+
 - Middleware de CSRF em formulários
 - Rate limiting em rotas sensíveis (ex.: login)
 - Middlewares de autenticação, convidado (guest) e controle de papéis (roles)
@@ -130,30 +136,4 @@ Base MVC: [github.com/eliasdossantos/php-mvc](https://github.com/eliasdossantos/
 
 ## Licença
 
-Copyright (C) 2026 Elias dos Santos
-
-Este projeto está licenciado sob os termos da **GNU General Public License v3.0 (GPL-3.0)**.
-
-Você tem liberdade para:
-
-- Utilizar o software;
-- Estudar o código-fonte;
-- Modificar o projeto;
-- Distribuir cópias;
-- Distribuir versões modificadas.
-
-Desde que:
-
-- Preserve os avisos de copyright;
-- Mantenha a licença GPL-3.0;
-- Disponibilize o código-fonte correspondente ao distribuir versões modificadas.
-
-Este software é fornecido **"COMO ESTÁ"**, sem qualquer garantia expressa ou implícita.
-
-Licença completa:
-
-https://www.gnu.org/licenses/gpl-3.0.html
-
----
-
-⭐ Se este projeto foi útil para você, considere deixar uma estrela no GitHub.
+Software proprietário. Todos os direitos reservados — veja o arquivo [LICENSE](LICENSE).
