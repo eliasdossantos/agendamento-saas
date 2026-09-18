@@ -6,6 +6,7 @@ use App\Models\UnidadeModel;
 use Core\Controller;
 use Core\Session;
 use App\Repositories\UnidadeRepository;
+use App\Repositories\UnidadeServicoRepository;
 use App\Requests\Unidade\UpdateUnidadeRequest;
 use App\Requests\Unidade\StoreUnidadeRequest;
 use Core\Upload;
@@ -23,6 +24,7 @@ use Core\Upload;
 class UnidadesController extends Controller
 {
     protected UnidadeRepository $repository;
+    protected UnidadeServicoRepository $vinculoRepository;
 
     public function __construct()
     {
@@ -30,6 +32,7 @@ class UnidadesController extends Controller
         parent::__construct();
 
         $this->repository = new UnidadeRepository();
+        $this->vinculoRepository = new UnidadeServicoRepository();
     }
 
     /**
@@ -43,6 +46,7 @@ class UnidadesController extends Controller
             'title' => 'Unidades',
             'subtitle'  => 'Lista de Unidades',
             'unidades' => $this->repository->all(),
+            'servicosPorUnidade' => $this->vinculoRepository->getNomesAgrupadosPorUnidade(),
         ];
 
         $this->view(

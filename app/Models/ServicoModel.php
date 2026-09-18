@@ -19,7 +19,7 @@ use Core\Model;
 class ServicoModel extends Model
 {
     /** Tabela correspondente no banco de dados */
-    protected string $table = 'servisos';
+    protected string $table = 'servicos';
 
     /**
      * Campos aceitos em create() e update().

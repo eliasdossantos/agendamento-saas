@@ -52,18 +52,287 @@ try {
 // ── Dados para inserir ────────────────────────────────────────────────────────
 
 $records = [
+
     [
-        'nome'       => 'Exemplo 1',
+        'nome'       => 'Corte de Cabelo',
         'status'     => 1,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s'),
     ],
+
     [
-        'nome'       => 'Exemplo 2',
+        'nome'       => 'Corte Masculino',
         'status'     => 1,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s'),
     ],
+
+    [
+        'nome'       => 'Corte Feminino',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte Infantil',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Barba Tradicional',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Barba Modelada',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Barba Completa',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte + Barba',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Sobrancelha',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Sobrancelha na Navalha',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Hidratação Capilar',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Escova',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Progressiva',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Coloração',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Luzes',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Platinado',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Lavagem Capilar',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Penteado',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Depilação Facial',
+        'status'     => 0,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Relaxamento Capilar',
+        'status'     => 0,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte Degradê',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte Social',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte Navalhado',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte Americano',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte Mullet',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte Black Power',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Corte Moicano',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Barba Express',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Barba com Toalha Quente',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Barba Desenhada',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Bigode',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Bigode Modelado',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Camuflagem de Barba',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Camuflagem de Cabelos Brancos',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Pigmentação Capilar',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Descoloração Capilar',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Tratamento Anti-Frizz',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Reconstrução Capilar',
+        'status'     => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Massagem Capilar',
+        'status'     => 0,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
+    [
+        'nome'       => 'Detox Capilar',
+        'status'     => 0,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
+
 ];
 
 // ── Execução ──────────────────────────────────────────────────────────────────

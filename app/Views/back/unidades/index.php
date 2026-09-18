@@ -19,7 +19,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h5 class="m-0 font-weight-bold text-primary"><?= e($subtitle ?? 'Lista de Unidades'); ?></h5>
-            <a href="<?= route('unidade.create') ?>" class="btn btn-primary btn-sm float-right"><i
+            <a href="<?= route('super.unidade.create') ?>" class="btn btn-primary btn-sm float-right"><i
                     class="fas fa-save"></i> Nova Unidade</a>
         </div>
         <div class="card-body">
@@ -31,6 +31,7 @@
                             <th class="d-none">ID</th>
                             <th>Ações</th>
                             <th>Nome</th>
+                            <th>Serviços</th>
                             <th>E-mail</th>
                             <th>Celular</th>
                             <th>Status</th>
@@ -42,6 +43,7 @@
                     <tbody>
                         <?php if (!empty($unidades)): ?>
                             <?php foreach ($unidades as $unidade): ?>
+                                <?php $nomesServicos = $servicosPorUnidade[$unidade->id] ?? []; ?>
                                 <tr>
                                     <td class="d-none"><?= e($unidade->id ?? ''); ?></td>
                                     <td>
@@ -52,15 +54,19 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                    href="<?= route('unidade.show', ['id' => $unidade->id]) ?>">
+                                                    href="<?= route('super.unidade.servicos', ['unidadeId' => $unidade->id]) ?>">
+                                                    Serviços
+                                                </a>
+                                                <a class="dropdown-item"
+                                                    href="<?= route('super.unidade.show', ['id' => $unidade->id]) ?>">
                                                     Visualizar
                                                 </a>
                                                 <a class="dropdown-item"
-                                                    href="<?= route('unidade.edit', ['id' => $unidade->id]) ?>">
+                                                    href="<?= route('super.unidade.edit', ['id' => $unidade->id]) ?>">
                                                     Editar
                                                 </a>
                                                 <!-- Botão de Ativar / Desativar -->
-                                                <form action="<?= route('unidade.verstatus', ['id' => $unidade->id]) ?>"
+                                                <form action="<?= route('super.unidade.verstatus', ['id' => $unidade->id]) ?>"
                                                     method="POST" style="display: inline;">
                                                     <button type="submit"
                                                         class="dropdown-item <?= ((int)$unidade->status === 1) ? 'text-warning' : 'text-success' ?>">
@@ -71,7 +77,7 @@
                                                 <button type="button" class="dropdown-item text-danger"
                                                     style="border:none;background:none;width:100%;text-align:left;"
                                                     data-toggle="modal" data-target="#deleteModal"
-                                                    data-action="<?= route('unidade.destroy', ['id' => $unidade->id]) ?>"
+                                                    data-action="<?= route('super.unidade.destroy', ['id' => $unidade->id]) ?>"
                                                     data-nome="<?= e($unidade->nome ?? 'este usuário') ?>"
                                                     data-titulo="Excluir usuário">
                                                     Excluir
@@ -80,6 +86,20 @@
                                         </div>
                                     </td>
                                     <td><?= e($unidade->nome ?? ''); ?></td>
+                                    <td>
+                                        <?php if (!empty($nomesServicos)): ?>
+                                            <button type="button" class="btn btn-link p-0" data-toggle="modal"
+                                                data-target="#servicosModal" data-nome="<?= e($unidade->nome ?? '') ?>"
+                                                data-servicos='<?= e(json_encode($nomesServicos)) ?>'>
+                                                <span class="badge badge-info">
+                                                    <?= count($nomesServicos) ?>
+                                                    serviço<?= count($nomesServicos) > 1 ? 's' : '' ?>
+                                                </span>
+                                            </button>
+                                        <?php else: ?>
+                                            <span class="text-muted">—</span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td><?= e($unidade->email ?? ''); ?></td>
                                     <td><?= e($unidade->telefone ?? ''); ?></td>
                                     <td><span
@@ -93,7 +113,7 @@
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="6" class="text-center">
+                                <td colspan="9" class="text-center">
                                     <?= emptyDataMessage() ?>
                                 </td>
                             </tr>
@@ -107,7 +127,10 @@
 </div>
 <!-- /.container-fluid -->
 <!-- Modal de confirmação de exclusão -->
-<?php \Core\View::partial('components.delete-modal'); ?>
+<?= \Core\View::render('components.delete-modal'); ?>
+
+<!-- Modal de Serviços da Unidade -->
+<?= \Core\View::render('components.servicos-modal'); ?>
 
 <?php View::end(); ?>
 
@@ -120,14 +143,5 @@
 
 <!-- Page level custom scripts -->
 <script src="<?= url('back/js/demo/datatables-demo.js') ?>"></script>
-<script>
-    $('#deleteModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget);
-        var action = button.data('action');
-        var nome = button.data('nome');
 
-        $('#deleteForm').attr('action', action);
-        $('#deleteModalNome').text(nome);
-    });
-</script>
 <?php View::end(); ?>

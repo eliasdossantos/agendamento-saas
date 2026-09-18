@@ -4,6 +4,7 @@ use App\Controllers\HomeController;
 use App\Controllers\Super\HomeController as SuperHomeController;
 use App\Controllers\Super\ServicosController;
 use App\Controllers\Super\UnidadesController;
+use App\Controllers\Super\UnidadesServicosController;
 use Core\Router;
 
 /** @var Router $router */
@@ -19,29 +20,36 @@ $router->get('/', [SuperHomeController::class, 'index']);
 
 $router->group(['prefix' => '/super', 'as' => 'super.', 'middleware' => ['DevelopmentMiddleware']], function (Router $r) {
 
-    // Home
-    $r->get('', [SuperHomeController::class, 'index'])->name('super.home');
+    // ── Home do Super Admin ──────────────────────────────────────────────────
+    $r->get('', [SuperHomeController::class, 'index'])->name('home');
 
-    // Unidades
-    $r->get('/unidade', [UnidadesController::class, 'index'])->name('unidade.index');
-    $r->get('/unidade/create', [UnidadesController::class, 'create'])->name('unidade.create');
-    $r->post('/unidade', [UnidadesController::class, 'store'])->name('unidade.store');
-    $r->get('/unidade/{id}', [UnidadesController::class, 'show'])->name('unidade.show');
-    $r->get('/unidade/{id}/edit', [UnidadesController::class, 'edit'])->name('unidade.edit');
-    $r->put('/unidade/{id}', [UnidadesController::class, 'update'])->name('unidade.update');
-    $r->delete('/unidade/{id}', [UnidadesController::class, 'destroy'])->name('unidade.destroy');
-    // Ver Status (Ativar/Desativar)
-    $r->post('/unidade/{id}/ver-status', [UnidadesController::class, 'verStatus'])->name('unidade.verstatus');
+    // ── Área UNIDADES
+    $r->group(['prefix' => '/unidade', 'as' => 'unidade.'], function (Router $r) {
 
-    // Serviços
-    $r->get('/servico', [ServicosController::class, 'index'])->name('servico.index');
-    $r->get('/servico/create', [ServicosController::class, 'create'])->name('servico.create');
-    $r->post('/servico', [ServicosController::class, 'store'])->name('servico.store');
-    $r->get('/servico/{id}', [ServicosController::class, 'show'])->name('servico.show');
-    $r->get('/servico/{id}/edit', [ServicosController::class, 'edit'])->name('servico.edit');
-    $r->put('/servico/{id}', [ServicosController::class, 'update'])->name('servico.update');
-    $r->delete('/servico/{id}', [ServicosController::class, 'destroy'])->name('servico.destroy');
+        $r->get('', [UnidadesController::class, 'index'])->name('index');
+        $r->get('/create', [UnidadesController::class, 'create'])->name('create');
+        $r->post('', [UnidadesController::class, 'store'])->name('store');
+        $r->get('/{id}', [UnidadesController::class, 'show'])->name('show');
+        $r->get('/{id}/edit', [UnidadesController::class, 'edit'])->name('edit');
+        $r->put('/{id}', [UnidadesController::class, 'update'])->name('update');
+        $r->delete('/{id}', [UnidadesController::class, 'destroy'])->name('destroy');
+        $r->post('/{id}/ver-status', [UnidadesController::class, 'verStatus'])->name('verstatus');
 
-    // Ver Status (Ativar/Desativar)
-    $r->post('/servico/{id}/ver-status', [ServicosController::class, 'verStatus'])->name('servico.verstatus');
+        $r->get('/{unidadeId}/servicos', [UnidadesServicosController::class, 'servicos'])->name('servicos');
+        $r->post('/{unidadeId}/servicos', [UnidadesServicosController::class, 'atualizarServicos'])->name('servicos.update');
+    });
+
+
+    // ── Área SERVIÇOS
+    $r->group(['prefix' => '/servico', 'as' => 'servico.'], function (Router $r) {
+
+        $r->get('', [ServicosController::class, 'index'])->name('index');
+        $r->get('/create', [ServicosController::class, 'create'])->name('create');
+        $r->post('', [ServicosController::class, 'store'])->name('store');
+        $r->get('/{id}', [ServicosController::class, 'show'])->name('show');
+        $r->get('/{id}/edit', [ServicosController::class, 'edit'])->name('edit');
+        $r->put('/{id}', [ServicosController::class, 'update'])->name('update');
+        $r->delete('/{id}', [ServicosController::class, 'destroy'])->name('destroy');
+        $r->post('/{id}/ver-status', [ServicosController::class, 'verStatus'])->name('verstatus');
+    });
 });

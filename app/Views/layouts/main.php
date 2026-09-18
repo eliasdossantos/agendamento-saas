@@ -48,26 +48,31 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= url('/super') ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            <!-- Nav Item - Unidade -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= url('/super/unidade') ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Unidade</span></a>
+                    <i class="fas fa-fw fa-building"></i>
+                    <span>Unidade</span>
+                </a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            <!-- Nav Item - Serviços -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= url('/super/servico') ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Serviços</span></a>
+                    <i class="fas fa-fw fa-concierge-bell"></i>
+                    <span>Serviços</span>
+                </a>
             </li>
 
             <!-- Divider -->
