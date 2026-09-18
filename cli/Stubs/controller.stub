@@ -2,7 +2,7 @@
 
 namespace App\Controllers{{ SubNamespace }};
 
-use Core\Controller;
+use App\Controllers\BaseController;
 use Core\Session;
 {{ UseRepository }}
 {{ UseRequest }}
@@ -16,7 +16,7 @@ use Core\Session;
  * Regra: controllers devem ser finos.
  * Lógica de negócio → Service | Acesso a dados → Repository
  */
-class {{ ClassName }} extends Controller
+class {{class}} extends BaseController
 {
     public function __construct()
     {

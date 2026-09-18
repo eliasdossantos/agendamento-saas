@@ -30,7 +30,8 @@
                 <div class="text-muted"><?= e($unidades->nome ?? '') ?></div>
             </div>
             <div class="mt-3 mt-md-0">
-                <a href="<?= route('unidade.show', ['id' => $unidades->id]) ?>" class="btn btn-outline-primary btn-sm">
+                <a href="<?= route('super.unidade.show', ['id' => $unidades->id]) ?>"
+                    class="btn btn-outline-primary btn-sm">
                     <i class="fas fa-eye"></i> Visualizar
                 </a>
                 <a href="<?= url('super/unidade') ?>" class="btn btn-outline-secondary btn-sm">
@@ -40,7 +41,8 @@
         </div>
     </div>
 
-    <form method="POST" action="<?= route('unidade.update', ['id' => $unidades->id]) ?>" enctype="multipart/form-data">
+    <form method="POST" action="<?= route('super.unidade.update', ['id' => $unidades->id]) ?>"
+        enctype="multipart/form-data">
         <?= csrf_field() ?>
         <?= method_field('PUT') ?>
 
@@ -77,6 +79,7 @@
                             </div>
                         </div>
                         <div class="custom-control custom-checkbox mt-2">
+                            <input type="hidden" name="status" value="0">
                             <input class="custom-control-input" type="checkbox" id="status" name="status" value="1"
                                 <?= old('status', $unidades->status ?? 1) == 1 ? 'checked' : '' ?>>
                             <label class="custom-control-label" for="status">Status do Registro</label>
@@ -333,7 +336,7 @@
                 <button type="submit" class="btn btn-success mr-2">
                     <i class="fas fa-save"></i> Atualizar
                 </button>
-                <a href="<?= route('unidade.show', ['id' => $unidades->id]) ?>" class="btn btn-primary mr-2">
+                <a href="<?= route('super.unidade.show', ['id' => $unidades->id]) ?>" class="btn btn-primary mr-2">
                     <i class="fas fa-eye"></i> Visualizar
                 </a>
                 <a href="<?= url('super/unidade') ?>" class="btn btn-danger">

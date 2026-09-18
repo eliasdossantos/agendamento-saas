@@ -35,7 +35,8 @@
                 </div>
 
                 <div class="mt-3 mt-md-0">
-                    <a href="<?= route('servico.edit', ['id' => $servicos->id]) ?>" class="btn btn-primary btn-sm">
+                    <a href="<?= route('super.servico.edit', ['id' => $servicos->id]) ?>"
+                        class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i> Editar
                     </a>
                     <a href="<?= url('super/servico') ?>" class="btn btn-outline-secondary btn-sm">

@@ -28,7 +28,7 @@
             <a href="<?= url('super/servico') ?>" class="btn btn-primary btn-sm">Voltar</a>
         </div>
         <div class="card-body">
-            <form method="POST" action="<?= route("servico.store") ?>" enctype="multipart/form-data">
+            <form method="POST" action="<?= route("super.servico.store") ?>" enctype="multipart/form-data">
                 <?= csrf_field() ?>
 
                 <div class="form-row">

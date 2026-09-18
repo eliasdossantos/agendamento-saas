@@ -5,7 +5,7 @@ namespace App\Controllers\Super;
 use App\Repositories\UnidadeRepository;
 use App\Repositories\ServicoRepository;
 use App\Repositories\UnidadeServicoRepository;
-use Core\Controller;
+use App\Controllers\BaseController;
 
 /**
  * UnidadesServicosController
@@ -16,7 +16,7 @@ use Core\Controller;
  * Regra: controllers devem ser finos.
  * Lógica de negócio → Service | Acesso a dados → Repository
  */
-class UnidadesServicosController extends Controller
+class UnidadesServicosController extends BaseController
 {
 
     /**

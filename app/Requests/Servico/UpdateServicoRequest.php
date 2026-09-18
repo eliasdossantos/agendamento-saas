@@ -54,7 +54,7 @@ class UpdateServicoRequest extends FormRequest
     {
         return [
             // Identificação
-            'nome'              => 'required|min:2|max:150|unique:unidades,nome',
+            'nome'              => 'required|min:2|max:150|unique:unidades,nome,{id}',
             'status'            => 'required',
         ];
     }

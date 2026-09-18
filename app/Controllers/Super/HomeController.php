@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Super;
 
-use Core\Controller;
+use App\Controllers\BaseController;
 use Core\Session;
 
 
@@ -16,7 +16,7 @@ use Core\Session;
  * Regra: controllers devem ser finos.
  * Lógica de negócio → Service | Acesso a dados → Repository
  */
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     public function __construct()
     {

@@ -3,7 +3,7 @@
 namespace App\Controllers\Super;
 
 use App\Models\UnidadeModel;
-use Core\Controller;
+use App\Controllers\BaseController;
 use Core\Session;
 use App\Repositories\UnidadeRepository;
 use App\Repositories\UnidadeServicoRepository;
@@ -21,7 +21,7 @@ use Core\Upload;
  * Regra: controllers devem ser finos.
  * Lógica de negócio → Service | Acesso a dados → Repository
  */
-class UnidadesController extends Controller
+class UnidadesController extends BaseController
 {
     protected UnidadeRepository $repository;
     protected UnidadeServicoRepository $vinculoRepository;
@@ -63,10 +63,7 @@ class UnidadesController extends Controller
     public function show(int $id): void
     {
         $unidades = $this->repository->findById($id);
-
-        if (!$unidades) {
-            $this->redirect('/super/unidade');
-        }
+        $this->abortUnless((bool) $unidades, 404, 'Unidade não encontrada.');
 
         $data = [
             'title'    => 'Detalhes da Unidade',
@@ -157,14 +154,11 @@ class UnidadesController extends Controller
     public function edit(int $id): void
     {
         $unidades = $this->repository->findById($id);
-
-        if (!$unidades) {
-            $this->redirect('/super/unidade');
-        }
+        $this->abortUnless((bool) $unidades, 404, 'Unidade não encontrada para edição.');
 
         $data = [
             'title' => 'Editar Unidades',
-            'unidades' => $this->repository->findById($id),
+            'unidades' => $unidades,
             'intervalos' => UnidadeRepository::getIntervalosMinutos(),
         ];
 
@@ -266,7 +260,7 @@ class UnidadesController extends Controller
     public function destroy(int $id): void
     {
         $unidade = $this->repository->findById($id);
-        $this->abortUnless((bool)$unidade, 404);
+        $this->abortUnless((bool)$unidade, 404, 'Unidade não removida.');
 
         // Remove a imagem do disco antes de apagar o registro.
         if (!empty($unidade->imagem)) {
@@ -288,7 +282,7 @@ class UnidadesController extends Controller
     public function verStatus(int $id): void
     {
         $unidade = $this->repository->findById($id);
-        $this->abortUnless((bool)$unidade, 404);
+        $this->abortUnless((bool)$unidade, 404, 'Status da unidade não alterado');
 
         $atualizado = $this->repository->verStatus($id);
 

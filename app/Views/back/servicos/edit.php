@@ -31,7 +31,8 @@
                 <h4 class="m-0 font-weight-bold text-gray-800"><?= e($title ?? 'Editar Serviço') ?></h4>
             </div>
             <div class="mt-3 mt-md-0">
-                <a href="<?= route('servico.show', ['id' => $servicos->id]) ?>" class="btn btn-outline-primary btn-sm">
+                <a href="<?= route('super.servico.show', ['id' => $servicos->id]) ?>"
+                    class="btn btn-outline-primary btn-sm">
                     <i class="fas fa-eye"></i> Visualizar
                 </a>
                 <a href="<?= url('super/servico') ?>" class="btn btn-outline-secondary btn-sm">
@@ -41,7 +42,8 @@
         </div>
     </div>
 
-    <form method="POST" action="<?= route('servico.update', ['id' => $servicos->id]) ?>" enctype="multipart/form-data">
+    <form method="POST" action="<?= route('super.servico.update', ['id' => $servicos->id]) ?>"
+        enctype="multipart/form-data">
         <?= csrf_field() ?>
         <?= method_field('PUT') ?>
 
@@ -64,6 +66,7 @@
                             </div>
                         </div>
                         <div class="custom-control custom-checkbox mt-2">
+                            <input type="hidden" name="status" value="0">
                             <input class="custom-control-input" type="checkbox" id="status" name="status" value="1"
                                 <?= old('status', $servicos->status ?? 1) == 1 ? 'checked' : '' ?>>
                             <label class="custom-control-label" for="status">Status do Registro</label>
@@ -80,7 +83,7 @@
                 <button type="submit" class="btn btn-success mr-2">
                     <i class="fas fa-save"></i> Atualizar
                 </button>
-                <a href="<?= route('servico.show', ['id' => $servicos->id]) ?>" class="btn btn-primary mr-2">
+                <a href="<?= route('super.servico.show', ['id' => $servicos->id]) ?>" class="btn btn-primary mr-2">
                     <i class="fas fa-eye"></i> Visualizar
                 </a>
                 <a href="<?= url('super/servico') ?>" class="btn btn-danger">

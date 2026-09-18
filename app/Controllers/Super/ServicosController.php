@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Super;
 
-use Core\Controller;
+use App\Controllers\BaseController;
 use Core\Session;
 use App\Repositories\ServicoRepository;
 use App\Requests\Servico\StoreServicoRequest;
@@ -17,7 +17,7 @@ use App\Requests\Servico\UpdateServicoRequest;
  * Regra: controllers devem ser finos.
  * Lógica de negócio → Service | Acesso a dados → Repository
  */
-class ServicosController extends Controller
+class ServicosController extends BaseController
 {
     protected ServicoRepository $servicoModel;
 

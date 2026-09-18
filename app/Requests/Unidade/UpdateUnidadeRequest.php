@@ -47,7 +47,7 @@ class UpdateUnidadeRequest extends FormRequest
 
         return [
             // Identificação
-            'nome'              => 'required|min:2|max:150|unique:unidades,nome',
+            'nome'              => 'required|min:2|max:150|unique:unidades,nome,{id}',
             'slug'              => 'required|min:2|max:150',
             'descricao'         => 'required|max:10000',
 
@@ -75,7 +75,7 @@ class UpdateUnidadeRequest extends FormRequest
             'intervalo_minutos' => "required|integer|in:{$intervalos}",
 
             // Status
-            'status'            => 'required',
+            'status'            => 'nullable',
         ];
     }
 
@@ -140,7 +140,7 @@ class UpdateUnidadeRequest extends FormRequest
             'intervalo_minutos.in'       => 'Selecione um intervalo válido.',
 
             // Status
-            'status.required'    => 'O status da unidade é obrigatório.',
+            'status.nullable'    => 'O status da unidade Ativar/Desativar.',
         ];
     }
 
