@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Requests\Serviso;
+namespace App\Requests\Servico;
 
 use App\Requests\FormRequest;
 use Core\Auth;

@@ -152,7 +152,7 @@ class ServicosController extends Controller
             return;
         }
 
-        $data    = $request->validated();
+        $data = $request->validated();
 
         $updated = $this->servicoModel->update($id, $data);
 
