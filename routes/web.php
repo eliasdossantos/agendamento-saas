@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\AgendasController;
 use App\Controllers\HomeController;
 use App\Controllers\Super\HomeController as SuperHomeController;
 use App\Controllers\Super\ServicosController;
@@ -14,7 +15,6 @@ $router->get('/', [HomeController::class, 'index'])->name('home');
 
 
 // ── Área Super Administrador ────────────────────────────────────────────────
-
 $router->group(['prefix' => '/super', 'as' => 'super.', 'middleware' => ['DevelopmentMiddleware']], function (Router $r) {
 
     // ── Home do Super Admin ──────────────────────────────────────────────────
@@ -49,4 +49,19 @@ $router->group(['prefix' => '/super', 'as' => 'super.', 'middleware' => ['Develo
         $r->delete('/{id}', [ServicosController::class, 'destroy'])->name('destroy');
         $r->post('/{id}/ver-status', [ServicosController::class, 'verStatus'])->name('verstatus');
     });
+});
+
+
+// ── Rotas de agendamentos do usuário logado
+$router->group(['prefix' => '/agenda', 'as' => 'agenda.'], function (Router $r) {
+
+    $r->get('', [AgendasController::class, 'index'])->name('index');
+    $r->get('/create', [AgendasController::class, 'create'])->name('create');
+    $r->get('/{id}/edit', [AgendasController::class, 'edit'])->name('edit');
+    $r->get('/{id}', [AgendasController::class, 'show'])->name('show');
+    $r->post('', [AgendasController::class, 'store'])->name('store');
+    $r->put('/{id}', [AgendasController::class, 'update'])->name('update');
+    $r->delete('/{id}', [AgendasController::class, 'destroy'])->name('destroy');
+
+    $r->get('/servicos', [AgendasController::class, 'unidadeServicos'])->name('get.unidade.servicos');
 });

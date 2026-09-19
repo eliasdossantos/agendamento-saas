@@ -18,19 +18,19 @@
     <meta name="theme-color" content="#7952b3">
 
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
         }
+    }
     </style>
 
 
@@ -43,10 +43,10 @@
 <body class="d-flex flex-column h-100">
 
     <header>
-        <!-- Fixed navbar -->
+        <!-- Meus Agendamentos -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Fixed navbar</a>
+                <a class="navbar-brand" href="<?= url('/') ?>">Meus Agendamentos</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="<?= url('/') ?>">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
@@ -74,13 +74,12 @@
 
     <!-- Begin page content -->
     <main class="flex-shrink-0">
-        <div class="container">
 
-            <!-- Essa é a seção de conteúdo, caso queira adicionar algum conteúdo específico para uma página, utilize a função View::section('content') no arquivo da view. -->
-            <?= View::section('content') ?>
+        <!-- Essa é a seção de conteúdo, caso queira adicionar algum conteúdo específico para uma página, utilize a função View::section('content') no arquivo da view. -->
+        <?= View::section('content') ?>
 
-        </div>
     </main>
+
 
     <script src="<?= url('front/js/bootstrap.bundle.min.js') ?>"></script>
 

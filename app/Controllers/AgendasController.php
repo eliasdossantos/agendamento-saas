@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Controllers{{ SubNamespace }};
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Services\AgendaService;
 use Core\Session;
-{{ UseRepository }}
-{{ UseRequest }}
 
 /**
- * {{ ClassName }}
+ * AgendasController
  * ─────────────────────────────────────────────────────────────────────────────
  * Responsável por receber as requisições HTTP, delegar para o Service/Repository
  * e retornar a resposta adequada (View ou JSON).
@@ -16,64 +15,80 @@ use Core\Session;
  * Regra: controllers devem ser finos.
  * Lógica de negócio → Service | Acesso a dados → Repository
  */
-class {{ ClassName }} extends BaseController
+class AgendasController extends BaseController
 {
+    private AgendaService $agendaService;
+
     public function __construct()
     {
         // parent::__construct() já instancia o Request automaticamente,
         // disponível em $this->request — não é necessário criá-lo manualmente
         parent::__construct();
 
-        // Inicialize dependências aqui
-        // $this->repository = new {{ ModelName }}Repository();
+        $this->agendaService = new AgendaService();
     }
 
     /**
      * Lista todos os registros.
-     * GET /{{ routePrefix }}
+     * GET /agendas
      */
     public function index(): void
     {
-        $this->view('{{ viewPath }}.index', [
-            'title' => '{{ ModelName }}',
-            // 'items' => $this->repository->paginate(15, (int)($_GET['page'] ?? 1)),
-        ]);
+        $data = [
+            'title' => 'Criar Agendamento',
+            'unidades' => $this->agendaService->renderUnidade(),
+        ];
+
+        $this->view(
+            'front.agendas.index',
+            $data,
+            'home'
+        );
     }
 
     /**
      * Exibe um registro específico.
-     * GET /{{ routePrefix }}/{id}
+     * GET /agendas/{id}
      */
     public function show(int $id): void
     {
-        // $item = $this->repository->findById($id);
-        // $this->abortUnless((bool)$item, 404);
-
-        $this->view('{{ viewPath }}.show', [
+        $data = [
             'title' => 'Detalhes',
-            // 'item'  => $item,
-        ]);
+        ];
+
+        $this->view(
+            'front.agendas.show',
+            $data,
+            'home'
+        );
     }
 
     /**
      * Exibe o formulário de criação.
-     * GET /{{ routePrefix }}/create
+     * GET /agendas/create
      */
     public function create(): void
     {
-        $this->view('{{ viewPath }}.create', [
-            'title' => 'Novo {{ ModelName }}',
-        ]);
+        $data = [
+            'title' => 'Criar Agendamento',
+            'unidades' => $this->agendaService->renderUnidade(),
+        ];
+
+        $this->view(
+            'front.agendas.index',
+            $data,
+            'home'
+        );
     }
 
     /**
      * Processa a criação de um novo registro.
-     * POST /{{ routePrefix }}
+     * POST /agendas
      */
     public function store(): void
     {
         // Exemplo com FormRequest:
-        // $request = new Store{{ ModelName }}Request();
+        // $request = new StoreAgendasRequest();
         // if ($request->fails()) {
         //     Session::flash('error', $request->firstError());
         //     Session::flashErrors($request->errors());
@@ -90,32 +105,37 @@ class {{ ClassName }} extends BaseController
         ]);
 
         // $id = $this->repository->create($_POST);
-        $this->redirectWith('{{ routePrefix }}', 'success', '{{ ModelName }} criado com sucesso!');
+        $this->redirectWith('agendas', 'success', 'Agendas criado com sucesso!');
     }
 
     /**
      * Exibe o formulário de edição.
-     * GET /{{ routePrefix }}/{id}/edit
+     * GET /agendas/{id}/edit
      */
     public function edit(int $id): void
     {
         // $item = $this->repository->findById($id);
         // $this->abortUnless((bool)$item, 404);
 
-        $this->view('{{ viewPath }}.edit', [
-            'title' => 'Editar {{ ModelName }}',
-            // 'item'  => $item,
-        ]);
+        $data = [
+            'title' => 'Editar Agendas',
+        ];
+
+        $this->view(
+            'front.agendas.edit',
+            $data,
+            'home'
+        );
     }
 
     /** 
      * Processa a atualização de um registro.
-     * PUT /{{ routePrefix }}/{id}
-    */
+     * PUT /agendas/{id}
+     */
     public function update(int $id): void
     {
         // Exemplo com FormRequest:
-        // $request = new Update{{ ModelName }}Request();
+        // $request = new UpdateAgendasRequest();
         // if ($request->fails()) {
         //     Session::flash('error', $request->firstError());
         //     Session::flashErrors($request->errors());
@@ -136,23 +156,23 @@ class {{ ClassName }} extends BaseController
         //
         // if (!$updated) {
         //     $this->redirectWith(
-        //         '{{ routePrefix }}',
+        //         'agendas',
         //         'error',
-        //         'Não foi possível atualizar {{ ModelName }}.'
+        //         'Não foi possível atualizar Agendas.'
         //     );
         //     return;
         // }
 
         $this->redirectWith(
-            '{{ routePrefix }}',
+            'agendas',
             'success',
-            '{{ ModelName }} atualizado com sucesso!'
+            'Agendas atualizado com sucesso!'
         );
     }
 
     /**
      * Remove um registro.
-     * DELETE /{{ routePrefix }}/{id}
+     * DELETE /agendas/{id}
      */
     public function destroy(int $id): void
     {
@@ -160,6 +180,6 @@ class {{ ClassName }} extends BaseController
         // $this->abortUnless((bool)$item, 404);
         // $this->repository->delete($id);
 
-        $this->jsonSuccess('{{ ModelName }} removido com sucesso.');
+        $this->jsonSuccess('Agendas removido com sucesso.');
     }
 }

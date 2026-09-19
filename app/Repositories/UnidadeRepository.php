@@ -56,9 +56,7 @@ class UnidadeRepository extends Repository
      */
     public function findByName(string $name): object|false
     {
-        return $this
-            ->model()
-            ->findBy('nome', $name);
+        return $this->model()->findBy('nome', $name);
     }
 
     /**
@@ -89,9 +87,8 @@ class UnidadeRepository extends Repository
      */
     public function getActive(): array
     {
-        return $this
-            ->model()
-            ->where('status', 'ativo')
+        return $this->model()
+            ->where('status', 1)
             ->orderBy('nome', 'ASC')
             ->get();
     }
@@ -110,19 +107,10 @@ class UnidadeRepository extends Repository
         int $page = 1,
         int $perPage = 15
     ): array {
-        $model = $this
-            ->model()
-            ->orderBy('id', 'DESC');
-
-        if ($term !== '') {
-            $model->where(
-                'nome',
-                '%' . $term . '%',
-                'LIKE'
-            );
-        }
-
-        return $model->paginate($perPage, $page);
+        return $this->model()
+            ->where('nome', '%' . $term . '%', 'LIKE')
+            ->orderBy('id', 'DESC')
+            ->paginate($perPage, $page);
     }
 
     /**
@@ -209,5 +197,16 @@ class UnidadeRepository extends Repository
         }
 
         return null;
+    }
+
+    /**
+     * Retorna unidades ativas disponíveis para agendamento.
+     */
+    public function disponiveisParaAgendamento(): array
+    {
+        return $this->model()
+            ->where('status', 1)
+            ->orderBy('nome', 'ASC')
+            ->get();
     }
 }
