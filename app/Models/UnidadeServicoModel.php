@@ -50,19 +50,20 @@ class UnidadeServicoModel extends Model
     }
 
     /**
-     * Nomes dos serviços de TODAS as unidades, agrupados por unidade_id.
+     * Nomes (+ status) dos serviços de TODAS as unidades, agrupados por unidade_id.
      * Uma única query (JOIN) em vez de uma consulta por linha da listagem.
      *
-     * Ajuste o nome da tabela/coluna 'servicos'/'nome' se forem diferentes
-     * no seu projeto.
+     * Ajuste o nome da tabela/coluna 'servicos'/'nome'/'status' se forem
+     * diferentes no seu projeto.
      *
-     * @return array<int, string[]> ex: [3 => ['Corte', 'Escova'], 5 => ['Manicure']]
+     * @return array<int, array<int, array{nome: string, status: int}>>
+     *         ex: [3 => [['nome' => 'Corte', 'status' => 1], ['nome' => 'Escova', 'status' => 0]]]
      */
     public function nomesAgrupadosPorUnidade(): array
     {
         $rows = $this->db
             ->query("
-                SELECT us.unidade_id, s.nome
+                SELECT us.unidade_id, s.nome, s.status
                 FROM {$this->table} us
                 INNER JOIN servicos s ON s.id = us.servico_id
                 ORDER BY s.nome
@@ -71,7 +72,10 @@ class UnidadeServicoModel extends Model
 
         $agrupado = [];
         foreach ($rows ?: [] as $row) {
-            $agrupado[(int) $row->unidade_id][] = $row->nome;
+            $agrupado[(int) $row->unidade_id][] = [
+                'nome'   => $row->nome,
+                'status' => (int) $row->status,
+            ];
         }
 
         return $agrupado;

@@ -8,6 +8,14 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        $this->view('home.index', ['title' => 'Início'], 'home');
+        $data = [
+            'title' => 'Meus Agendamentos',
+        ];
+
+        $this->view(
+            'front.home.index',
+            $data,
+            'home'
+        );
     }
 }

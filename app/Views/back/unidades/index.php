@@ -31,92 +31,88 @@
                             <th class="d-none">ID</th>
                             <th>Ações</th>
                             <th>Nome</th>
-                            <th>Serviços</th>
                             <th>E-mail</th>
                             <th>Celular</th>
+                            <th>Serviços</th>
                             <th>Status</th>
-                            <th>Início</th>
-                            <th>Fim</th>
                             <th>Criado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (!empty($unidades)): ?>
-                            <?php foreach ($unidades as $unidade): ?>
-                                <?php $nomesServicos = $servicosPorUnidade[$unidade->id] ?? []; ?>
-                                <tr>
-                                    <td class="d-none"><?= e($unidade->id ?? ''); ?></td>
-                                    <td>
-                                        <div class="btn-group dropup">
-                                            <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle"
-                                                data-toggle="dropdown" aria-expanded="false">
-                                                Ações
+                        <?php foreach ($unidades as $unidade): ?>
+                        <?php $nomesServicos = $servicosPorUnidade[$unidade->id] ?? []; ?>
+                        <tr>
+                            <td class="d-none"><?= e($unidade->id ?? ''); ?></td>
+                            <td>
+                                <div class="btn-group dropup">
+                                    <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle"
+                                        data-toggle="dropdown" aria-expanded="false">
+                                        Ações
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item"
+                                            href="<?= route('super.unidade.servicos', ['unidadeId' => $unidade->id]) ?>">
+                                            Serviços
+                                        </a>
+                                        <a class="dropdown-item"
+                                            href="<?= route('super.unidade.show', ['id' => $unidade->id]) ?>">
+                                            Visualizar
+                                        </a>
+                                        <a class="dropdown-item"
+                                            href="<?= route('super.unidade.edit', ['id' => $unidade->id]) ?>">
+                                            Editar
+                                        </a>
+                                        <!-- Botão de Ativar / Desativar -->
+                                        <form action="<?= route('super.unidade.verstatus', ['id' => $unidade->id]) ?>"
+                                            method="POST" style="display: inline;">
+                                            <button type="submit"
+                                                class="dropdown-item <?= ((int)$unidade->status === 1) ? 'text-warning' : 'text-success' ?>">
+                                                <?= ((int)$unidade->status === 1) ? 'Desativar' : 'Ativar' ?>
                                             </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                    href="<?= route('super.unidade.servicos', ['unidadeId' => $unidade->id]) ?>">
-                                                    Serviços
-                                                </a>
-                                                <a class="dropdown-item"
-                                                    href="<?= route('super.unidade.show', ['id' => $unidade->id]) ?>">
-                                                    Visualizar
-                                                </a>
-                                                <a class="dropdown-item"
-                                                    href="<?= route('super.unidade.edit', ['id' => $unidade->id]) ?>">
-                                                    Editar
-                                                </a>
-                                                <!-- Botão de Ativar / Desativar -->
-                                                <form action="<?= route('super.unidade.verstatus', ['id' => $unidade->id]) ?>"
-                                                    method="POST" style="display: inline;">
-                                                    <button type="submit"
-                                                        class="dropdown-item <?= ((int)$unidade->status === 1) ? 'text-warning' : 'text-success' ?>">
-                                                        <?= ((int)$unidade->status === 1) ? 'Desativar' : 'Ativar' ?>
-                                                    </button>
-                                                </form>
-                                                <div class="dropdown-divider"></div>
-                                                <button type="button" class="dropdown-item text-danger"
-                                                    style="border:none;background:none;width:100%;text-align:left;"
-                                                    data-toggle="modal" data-target="#deleteModal"
-                                                    data-action="<?= route('super.unidade.destroy', ['id' => $unidade->id]) ?>"
-                                                    data-nome="<?= e($unidade->nome ?? 'este usuário') ?>"
-                                                    data-titulo="Excluir usuário">
-                                                    Excluir
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><?= e($unidade->nome ?? ''); ?></td>
-                                    <td>
-                                        <?php if (!empty($nomesServicos)): ?>
-                                            <button type="button" class="btn btn-link p-0" data-toggle="modal"
-                                                data-target="#servicosModal" data-nome="<?= e($unidade->nome ?? '') ?>"
-                                                data-servicos='<?= e(json_encode($nomesServicos)) ?>'>
-                                                <span class="badge badge-info">
-                                                    <?= count($nomesServicos) ?>
-                                                    serviço<?= count($nomesServicos) > 1 ? 's' : '' ?>
-                                                </span>
-                                            </button>
-                                        <?php else: ?>
-                                            <span class="text-muted">—</span>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?= e($unidade->email ?? ''); ?></td>
-                                    <td><?= e($unidade->telefone ?? ''); ?></td>
-                                    <td><span
-                                            class="badge <?= e($unidade->status ? 'badge-success' : 'badge-secondary') ?> mt-2">
-                                            <?= e($unidade->status ? 'Ativo' : 'Inativo') ?>
-                                        </span></td>
-                                    <td><?= e($unidade->hora_inicio ?? ''); ?></td>
-                                    <td><?= e($unidade->hora_fim ?? ''); ?></td>
-                                    <td><?= e(dateBR($unidade->created_at ?? '')); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
+                                        </form>
+                                        <div class="dropdown-divider"></div>
+                                        <button type="button" class="dropdown-item text-danger"
+                                            style="border:none;background:none;width:100%;text-align:left;"
+                                            data-toggle="modal" data-target="#deleteModal"
+                                            data-action="<?= route('super.unidade.destroy', ['id' => $unidade->id]) ?>"
+                                            data-nome="<?= e($unidade->nome ?? 'este usuário') ?>"
+                                            data-titulo="Excluir usuário">
+                                            Excluir
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><?= e($unidade->nome ?? ''); ?></td>
+                            <td><?= e($unidade->email ?? ''); ?></td>
+                            <td><?= e($unidade->telefone ?? ''); ?></td>
+                            <td>
+                                <?php if (!empty($nomesServicos)): ?>
+                                <button type="button" class="btn btn-link p-0" data-toggle="modal"
+                                    data-target="#servicosModal" data-nome="<?= e($unidade->nome ?? '') ?>"
+                                    data-servicos='<?= e(json_encode($nomesServicos)) ?>'>
+                                    <span class="badge badge-info">
+                                        <?= count($nomesServicos) ?>
+                                        serviço<?= count($nomesServicos) > 1 ? 's' : '' ?>
+                                    </span>
+                                </button>
+                                <?php else: ?>
+                                <span class="text-muted">—</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><span
+                                    class="badge <?= e($unidade->status ? 'badge-success' : 'badge-secondary') ?> mt-2">
+                                    <?= e($unidade->status ? 'Ativo' : 'Inativo') ?>
+                                </span></td>
+                            <td><?= e(dateBR($unidade->created_at ?? '')); ?></td>
+                        </tr>
+                        <?php endforeach; ?>
                         <?php else: ?>
-                            <tr>
-                                <td colspan="9" class="text-center">
-                                    <?= emptyDataMessage() ?>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="9" class="text-center">
+                                <?= emptyDataMessage() ?>
+                            </td>
+                        </tr>
                         <?php endif; ?>
                     </tbody>
                 </table>

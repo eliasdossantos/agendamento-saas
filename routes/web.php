@@ -10,10 +10,7 @@ use Core\Router;
 /** @var Router $router */
 
 // ── Raiz ──────────────────────────────────────────────────────────────────────
-// $router->get('/', [HomeController::class, 'index'])->name('home');
-
-// ── Raiz ──────────────────────────────────────────────────────────────────────
-$router->get('/', [SuperHomeController::class, 'index']);
+$router->get('/', [HomeController::class, 'index'])->name('home');
 
 
 // ── Área Super Administrador ────────────────────────────────────────────────

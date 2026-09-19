@@ -10,15 +10,23 @@
  * Uso: inclua UMA VEZ na página (normalmente perto do fim, antes de View::end()):
  *   <?php \Core\View::partial('components.servicos-modal'); ?>
  *
- * Em qualquer botão/badge que deva abrir o modal:
- * <button type="button" * data-toggle="modal" data-target="#servicosModal" * data-nome="<?= e($unidade->nome) ?>" *
+ * Em qualquer botão/badge que deva abrir o modal, passe data-servicos como um
+ * array JSON de objetos {nome, status} — não mais apenas strings de nome:
+ *
+ * <button type="button" data-toggle="modal" data-target="#servicosModal" * data-nome="<?= e($unidade->nome) ?>" *
     data-servicos='<?= e(json_encode($nomesServicos)) ?>'>
  * <?= count($nomesServicos) ?> serviços
  * </button>
  *
+ * Onde $nomesServicos vem de UnidadeServicoModel::nomesAgrupadosPorUnidade():
+ * [['nome' => 'Corte', 'status' => 1], ['nome' => 'Escova', 'status' => 0], ...]
+ *
  * Atributos suportados no gatilho:
- * data-servicos (obrigatório) Array JSON com os nomes dos serviços
+ * data-servicos (obrigatório) Array JSON de {nome, status} (status: 1 ativo / 0 inativo)
  * data-nome Nome do item exibido no título (padrão: "este registro")
+ *
+ * Retrocompatível: se algum item vier como string simples (sem status), o
+ * modal exibe só o nome, sem o badge.
  */
 ?>
 <div class="modal fade" id="servicosModal" tabindex="-1" role="dialog" aria-labelledby="servicosModalLabel"

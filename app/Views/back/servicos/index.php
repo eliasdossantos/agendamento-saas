@@ -9,7 +9,7 @@
 <?php View::end(); ?>
 
 
-!-- Aqui enviamos para o template principal os estilos -->
+<!-- Aqui enviamos para o template principal os estilos -->
 <?php View::start('styles'); ?>
 <!-- Custom styles for this page -->
 <link href="<?= url('back/vendor/datatables/dataTables.bootstrap4.min.css') ?>" rel="stylesheet">
@@ -117,14 +117,4 @@
 
 <!-- Page level custom scripts -->
 <script src="<?= url('back/js/demo/datatables-demo.js') ?>"></script>
-<script>
-    $('#deleteModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget);
-        var action = button.data('action');
-        var nome = button.data('nome');
-
-        $('#deleteForm').attr('action', action);
-        $('#deleteModalNome').text(nome);
-    });
-</script>
 <?php View::end(); ?>
